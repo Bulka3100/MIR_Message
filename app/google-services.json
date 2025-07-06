@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1084058032796",
+    "project_id": "mir-messenger-12c3e",
+    "storage_bucket": "mir-messenger-12c3e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1084058032796:android:95cbb736b658c57ef22b59",
+        "android_client_info": {
+          "package_name": "com.example.swit"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHZHaRcabr_3SyeI-fBxrT13pEAVbFxqk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

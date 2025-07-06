@@ -14,8 +14,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
 import com.example.swit.ui.components.BottomBar
-import com.example.swit.ui.navigation.BottomNavGraph
 import com.example.swit.ui.theme.SwitTheme
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,32 +23,25 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             SwitTheme {
-                    val navController = rememberNavController()
-
-                    Scaffold(
-                        bottomBar = { BottomBar(navController) }
-                    ) { innerPadding ->
-                        Box(modifier = Modifier.padding(innerPadding)) {
-                            BottomNavGraph(navController)
-                        }
-                    }
-                }
+                MIRApp()
             }
+        }
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
 
-@Preview(showBackground = true)
+@Preview(showSystemUi = true, showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun showUi(
+
+) {
     SwitTheme {
-        Greeting("Android")
+        Scaffold { innerPadding ->
+            Box(modifier = Modifier.padding(innerPadding)) {
+                MIRApp()
+            }
+        }
+
+
     }
 }

@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.google.services)
 }
 
 android {
@@ -40,6 +41,17 @@ android {
 }
 
 dependencies {
+// Firebase Authentication (вход, регистрация)
+    implementation("com.google.firebase:firebase-auth:22.3.0")
+
+// Firebase Realtime Database (для сообщений)
+    implementation("com.google.firebase:firebase-database:20.3.0")
+
+// Firebase Firestore (если хочешь вместо Realtime Database)
+    implementation("com.google.firebase:firebase-firestore:25.0.0")
+
+// Kotlin Coroutines (если будешь использовать)
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
