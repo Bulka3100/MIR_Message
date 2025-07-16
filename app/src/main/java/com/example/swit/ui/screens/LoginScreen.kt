@@ -9,8 +9,12 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.swit.navigation.Screens
 import com.example.swit.viewmodel.AuthState
 import com.example.swit.viewmodel.AuthViewModel
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.firestore
 
 @Composable
 fun LoginScreen(
@@ -78,11 +82,27 @@ fun LoginScreen(
                 CircularProgressIndicator()
             }
             is AuthState.Success -> {
-                Text("Успешно!", color = MaterialTheme.colorScheme.primary)
                 LaunchedEffect(Unit) {
-                    onLoginSuccess() // Переходим на следующий экран
+                    val userId = FirebaseAuth.getInstance().currentUser?.uid
+                    if (userId != null) {
+                        val db = Firebase.firestore
+                        val userDoc = db.collection("users").document(userId).get().await()
+
+                        val username = userDoc.getString("username")
+                        if (username.isNullOrBlank()) {
+                            navController.navigate(Screens.UsernameScreen.route) {
+                                popUpTo(Screens.LoginScreen.route) { inclusive = true }
+                            }
+                        } else {
+                            navController.navigate(Screens.ChatListScreen.route) {
+                                popUpTo(Screens.LoginScreen.route) { inclusive = true }
+                            }
+                        }
+                    }
                 }
+                Text("Успешно!", color = MaterialTheme.colorScheme.primary)
             }
+
             is AuthState.Error -> {
                 Text(
                     text = "Ошибка: ${(authState as AuthState.Error).message}",
